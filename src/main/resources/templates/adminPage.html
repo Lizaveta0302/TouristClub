@@ -1,0 +1,262 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="/_include"/>
+    <title>Админ</title>
+    <script>
+        $('select#section').on('change', function() {
+            $('input[name="section"]').val(this.value);
+        });
+    </script>
+</head>
+<body>
+<th:block th:include="/_header"/>
+
+<div class="container">
+    <h2 style="text-align: center;margin-top: 13px;" >Личный кабинет <span th:utext="${#request.userPrincipal.name}"></span></h2>
+    <hr style="width: 30%;">
+
+    <a th:href="@{#addsection}" style="color: #000000;">Добавить секцию</a>
+    <a th:href="@{#addsupervisor}" style="color: #000000; padding-left: 20px;">Добавить руководителя</a>
+
+    <hr style="width: 100%;">
+
+    <div id="addsection" style="width: 25%;">
+        <form th:action="@{/addSection}" method="post">
+            <fieldset>
+                <legend>Добавление секции</legend>
+                <div class="form-group">
+                    <label for="name">Название</label>
+                    <input type="text" class="form-control" name="section_name" id="name" aria-describedby="emailHelp" placeholder="Введите название секции">
+                </div>
+                <div class="form-group">
+                    <label for="supervisorId">Id руководителя</label>
+                    <input type="text" class="form-control" name="supervisorId" id="supervisorId" placeholder="Введите id руководителя">
+                </div>
+                <button type="submit" class="btn btn-primary">Добавить</button>
+            </fieldset>
+        </form>
+    </div>
+    <br>
+    <div id="addsupervisor" style="width: 25%; margin-bottom: 50px;">
+    </div>
+    <br>
+    <!-- Кнопка пуска модальное окно -->
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="margin-bottom: 4%;">
+        Добавить руководителя
+    </button>
+
+    <!-- Модальное окно -->
+    <div style="margin-bottom: 150px;" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{/addSupervisor}" method="post">
+                        <fieldset>
+                            <legend>Добавление руководителя</legend>
+                            <div class="form-group">
+                                <label for="name_supervisor">Имя</label>
+                                <input type="text" class="form-control" name="name_supervisor" id="name_supervisor" aria-describedby="emailHelp" placeholder="Введите имя">
+                            </div>
+                            <div class="form-group">
+                                <label for="last_name">Фамилия</label>
+                                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Введите фамилию">
+                            </div>
+                            <div class="form-group">
+                                <label for="patronymic">Отчество</label>
+                                <input type="text" class="form-control" name="patronymic" id="patronymic" placeholder="Введите отчество">
+                            </div>
+                            <div class="form-group">
+                                <label for="salary">Зарплата</label>
+                                <input type="text" class="form-control" name="salary" id="salary" placeholder="Введите зарплату">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Добавить</button>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Кнопка пуска модальное окно -->
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#hikeModal" style="margin-bottom: 4%;">
+        Добавить поход
+    </button>
+    <!-- Модальное окно -->
+    <div style="margin-bottom: 150px;" class="modal fade" id="hikeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{/addHike}" method="post">
+                        <fieldset>
+                            <legend>Добавление похода</legend>
+                            <div class="form-group">
+                                <label for="name">Название похода</label>
+                                <input type="text" class="form-control" name="name_hike" id="name_hike" aria-describedby="emailHelp" placeholder="Введите название похода">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Добавить</button>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Кнопка пуска модальное окно -->
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#scheduleModal" style="margin-bottom: 4%;">
+        Добавить расписание
+    </button>
+    <!-- Модальное окно -->
+    <div style="margin-bottom: 150px;" class="modal fade" id="scheduleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{/addSchedule}" method="post">
+                        <fieldset>
+                            <legend>Добавление расписания</legend>
+                            <div class="form-group">
+                                <label for="place">Место</label>
+                                <input type="text" class="form-control" name="place" id="place" aria-describedby="emailHelp" placeholder="Введите место">
+                            </div>
+                            <div class="form-group">
+                                <label for="data">Дата</label>
+                                <input type="datetime-local" class="form-control" name="date" id="data" aria-describedby="emailHelp" placeholder="Введите дату">
+                            </div>
+                            <div class="form-group">
+                                <label for="dur">Продолжительность тренировки</label>
+                                <input type="number" class="form-control" name="duration" id="dur" aria-describedby="emailHelp" placeholder="Введите продолжительность">
+                            </div>
+                            <div class="form-group">
+                                <label for="section">Секция</label>
+                                <select class="custom-select" name="section" id="section">
+                                    <th:block th:each="s : ${section}">
+                                    <option th:text="${s.section_name}"></option>
+                                    </th:block>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Добавить</button>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br style="margin-bottom: 10px;">
+    <!-- Кнопка пуска модальное окно -->
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#routeModal" style="margin-bottom: 4%;">
+        Добавить маршрут
+    </button>
+    <!-- Модальное окно -->
+    <div style="margin-bottom: 150px;" class="modal fade" id="routeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{/addRoute}" method="post">
+                        <fieldset>
+                            <legend>Добавление маршрута</legend>
+                            <div class="form-group">
+                                <label for="days">Количество дней</label>
+                                <input type="number" class="form-control" name="number_of_days" id="days" aria-describedby="emailHelp" placeholder="Введите количество дней">
+                            </div>
+                            <div class="form-group">
+                                <label for="data_start">Дата</label>
+                                <input type="datetime-local" class="form-control" name="data_start" id="data_start" aria-describedby="emailHelp" placeholder="Введите дату">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Добавить</button>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br style="margin-bottom: 10px;">
+    <!-- Кнопка пуска модальное окно -->
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#tModal" style="margin-bottom: 4%;">
+        Добавить туриста
+    </button>
+    <!-- Модальное окно -->
+    <div style="margin-bottom: 150px;" class="modal fade" id="tModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{/addTourist}" method="post">
+                        <fieldset>
+                            <legend>Добавление туриста</legend>
+                            <div class="form-group">
+                                <label for="n">Имя</label>
+                                <input type="text" class="form-control" name="name" id="n" aria-describedby="emailHelp" placeholder="Введите имя">
+                            </div>
+                            <div class="form-group">
+                                <label for="f">Фамилия</label>
+                                <input type="text" class="form-control" name="last_name" id="f" aria-describedby="emailHelp" placeholder="Введите фамилию">
+                            </div>
+                            <div class="form-group">
+                                <label for="p">Отчество</label>
+                                <input type="text" class="form-control" name="patronymic" id="p" aria-describedby="emailHelp" placeholder="Введите отчество">
+                            </div>
+                            <div class="form-group">
+                                <label for="g">Пол</label>
+                                <input type="text" class="form-control" name="gender" id="g" aria-describedby="emailHelp" placeholder="Введите пол">
+                            </div>
+                            <div class="form-group">
+                                <label for="g">День рождения</label>
+                                <input type="date" class="form-control" name="birthday" id="b" aria-describedby="emailHelp" placeholder="Введите День рождения">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Добавить</button>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr style="margin-bottom: 15%;width: 70%;margin-top: 5%;">
+</div>
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<th:block th:include="/_footer"/>
+</body>
+
+</html>

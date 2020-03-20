@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="/_include"/>
+    <title>Руководители</title>
+</head>
+<body>
+<th:block th:include="/_header"/>
+
+<div class="container">
+    <h2 style="text-align: center;" id="hikes" >Руководители секций</h2>
+    <hr style="width: 30%;">
+    <div class="table_supervisors" style="width: 60%; margin: auto">
+    <table id="tableHike" class="table table-hover table-active" >
+        <thead>
+        <tr>
+            <th scope="col">Имя</th>
+            <th scope="col">Фамилия</th>
+            <th scope="col">Зарплата</th>
+            <th th:if="${#request.userPrincipal != null}" scope="col">Редактировать</th>
+            <th th:if="${#request.userPrincipal != null}" scope="col">Удалить</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="supervisor : ${sup}">
+            <tr class="table-secondary">
+                <th scope="row" th:text="${supervisor.name}"></th>
+                <td th:text="${supervisor.last_name}"></td>
+                <td th:text="${supervisor.salary}"></td>
+                <td th:if="${#request.userPrincipal != null}" style="text-align: center"><a th:href="@{'/editS/{id}'(id=${supervisor.id_supervisor})}"><i class="fa  fa-fw fa-edit" style="font-size:20px"></i></a></td>
+                <td th:if="${#request.userPrincipal != null}" style="text-align: center"><a th:href="@{'/deleteS/{id}'(id=${supervisor.id_supervisor})}"><i class="fa  fa-fw fa-trash" style="font-size:20px"></i></a></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+    </div>
+    <hr>
+</div>
+</div>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
+
+<th:block th:include="/_footer"/>
+</body>
+</html>

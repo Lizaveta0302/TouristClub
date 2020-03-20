@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <th:block th:include="/_include"/>
+    <title>Секции</title>
+</head>
+<body>
+<th:block th:include="/_header"/>
+
+<div class="container">
+    <h2 style="text-align: center;" id="hikes" >Доступные секции</h2>
+    <hr style="width: 30%;">
+    <table id="tableHike" class="table table-hover table-active" style="width: 60%;margin: auto;">
+        <thead>
+        <tr>
+            <th scope="col">Секция</th>
+            <th scope="col">ФИО Инструктора</th>
+            <th th:if="${#request.userPrincipal != null}" scope="col">Редактировать</th>
+            <th th:if="${#request.userPrincipal != null}" scope="col">Удалить</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="section : ${sections}">
+            <tr class="table-secondary">
+                <th scope="row" th:text="${section.section_name}"></th>
+                <td th:text="${section.supervisor.last_name} + ' ' + ${section.supervisor.name} + ' ' + ${section?.supervisor?.patronymic} ?: ' '"></td>
+                <td style="text-align: center"><a th:if="${#request.userPrincipal != null}" th:href="@{'/edit/{id}'(id=${section.id})}"><i class="fa  fa-fw fa-edit" style="font-size:20px"></i></a></td>
+                <td style="text-align: center"><a th:if="${#request.userPrincipal != null}" th:href="@{'/delete/{id}'(id=${section.id})}"><i class="fa  fa-fw fa-trash" style="font-size:20px"></i></a></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+    <hr>
+</div>
+</div>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
+
+<th:block th:include="/_footer"/>
+</body>
+</html>

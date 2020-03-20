@@ -1,0 +1,17 @@
+INSERT INTO demo.hike (id_hike, name) VALUES (1, 'Сплав');
+INSERT INTO demo.hike (id_hike, name) VALUES (2, 'Гибрид');
+INSERT INTO demo.hike (id_hike, name) VALUES (3, 'Веселье');
+INSERT INTO demo.hike (id_hike, name) VALUES (4, 'Поход для новичков');
+INSERT INTO demo.hike (id_hike, name) VALUES (5, 'простой');
+INSERT INTO demo.hike (id_hike, name) VALUES (6, 'пмр');
+INSERT INTO demo.hike (id_hike, name) VALUES (7, 'Научный');
+INSERT INTO demo.hike (id_hike, name) VALUES (8, 'Удача');
+INSERT INTO demo.hike (id_hike, name) VALUES (9, 'Добро и мир');
+INSERT INTO demo.hike (id_hike, name) VALUES (10, 'Город раз');
+INSERT INTO demo.hike (id_hike, name) VALUES (11, 'Малинкин');
+INSERT INTO demo.hike (id_hike, name) VALUES (12, 'Грозный');
+INSERT INTO demo.hike (id_hike, name) VALUES (18, 'Веселье');
+INSERT INTO demo.hike (id_hike, name) VALUES (19, 'Новогодний');
+INSERT INTO demo.hike (id_hike, name) VALUES (20, 'Новый');
+INSERT INTO demo.hike (id_hike, name) VALUES (21, 'Студенческий');
+INSERT INTO demo.hike (id_hike, name) VALUES (22, 'Походик');

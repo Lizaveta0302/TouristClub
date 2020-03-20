@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="/_include"/>
+    <title>403</title>
+</head>
+
+<body>
+<!-- Include _menu.html -->
+<th:block th:include="/_header"/>
+
+<div class="container">
+    <div style="margin: auto; text-align: center;padding-top: 20px;">
+        <h3 th:if="${message != null}" th:utext="${message}" style="color: red;"></h3>
+        <h5>Личный кабинет только для администратора.</h5>
+        <h6 style="padding-top: 15px;"><a th:href="@{main}" style="color: #000000">Вернуться на главную страницу</a></h6>
+    </div>
+</div>
+<th:block th:include="/_footer"/>
+</body>
+
+</html>
